@@ -42,8 +42,10 @@ export default function App() {
 	}
 
 	function handleSelectedFriend(friend) {
-		// we will use null or the friend data itself as selectedFriend
-		setSelectedFriend(friend);
+		// close Split Bill component by checking if the clicked button
+		// is the same friend which is open
+		// selectedFriend might be null, so notice selectedFriend?.id
+		setSelectedFriend(friend.id === selectedFriend?.id ? null : friend);
 	}
 
 	return (

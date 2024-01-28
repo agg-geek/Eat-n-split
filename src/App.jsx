@@ -28,20 +28,24 @@ const data = [
 ];
 
 export default function App() {
+	const [friends, setFriends] = useState(data);
 	const [displayAddFriend, setDisplayAddFriend] = useState(false);
 
 	function handleDisplayAddFriend() {
 		setDisplayAddFriend(display => !display);
 	}
 
+	function handleAddFriend(newFriend) {
+		setFriends(friends => [...friends, newFriend]);
+		setDisplayAddFriend(false);
+	}
+
 	return (
 		<div className="app">
 			<div className="sidebar">
-				<FriendsList friends={data} />
-				{displayAddFriend && <AddFriend />}
+				<FriendsList friends={friends} />
+				{displayAddFriend && <AddFriend onAddFriend={handleAddFriend} />}
 
-				{/* our custom Button component does not have inbuilt onClick event listener */}
-				{/* so we instead pass the event listener fn to the <button> elem inside Button */}
 				<Button onClick={handleDisplayAddFriend}>
 					{displayAddFriend ? 'Close' : 'Add friend'}
 				</Button>

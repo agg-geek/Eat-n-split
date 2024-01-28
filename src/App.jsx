@@ -42,16 +42,17 @@ export default function App() {
 	}
 
 	function handleSelectedFriend(friend) {
-		// close Split Bill component by checking if the clicked button
-		// is the same friend which is open
-		// selectedFriend might be null, so notice selectedFriend?.id
 		setSelectedFriend(friend.id === selectedFriend?.id ? null : friend);
 	}
 
 	return (
 		<div className="app">
 			<div className="sidebar">
-				<FriendsList friends={friends} onSelectFriend={handleSelectedFriend} />
+				<FriendsList
+					friends={friends}
+					onSelectFriend={handleSelectedFriend}
+					selectedFriend={selectedFriend}
+				/>
 				{displayAddFriend && <AddFriend onAddFriend={handleAddFriend} />}
 
 				<Button onClick={handleDisplayAddFriend}>

@@ -30,6 +30,7 @@ const data = [
 export default function App() {
 	const [friends, setFriends] = useState(data);
 	const [displayAddFriend, setDisplayAddFriend] = useState(false);
+	const [selectedFriend, setSelectedFriend] = useState(null);
 
 	function handleDisplayAddFriend() {
 		setDisplayAddFriend(display => !display);
@@ -40,17 +41,22 @@ export default function App() {
 		setDisplayAddFriend(false);
 	}
 
+	function handleSelectedFriend(friend) {
+		// we will use null or the friend data itself as selectedFriend
+		setSelectedFriend(friend);
+	}
+
 	return (
 		<div className="app">
 			<div className="sidebar">
-				<FriendsList friends={friends} />
+				<FriendsList friends={friends} onSelectFriend={handleSelectedFriend} />
 				{displayAddFriend && <AddFriend onAddFriend={handleAddFriend} />}
 
 				<Button onClick={handleDisplayAddFriend}>
 					{displayAddFriend ? 'Close' : 'Add friend'}
 				</Button>
 			</div>
-			<SplitBill />
+			{selectedFriend && <SplitBill friend={selectedFriend} />}
 		</div>
 	);
 }

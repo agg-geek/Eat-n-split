@@ -12,7 +12,6 @@ export default function SplitBill() {
 			<input type="number" />
 
 			<label>🧍‍♀️ X's expense</label>
-			{/* disabled input field */}
 			<input type="number" disabled />
 
 			<label>🤑 Who is paying the bill?</label>

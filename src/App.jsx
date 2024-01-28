@@ -1,9 +1,10 @@
+import { useState } from 'react';
+
+import './index.css';
 import FriendsList from './components/FriendsList';
 import AddFriend from './components/AddFriend';
 import SplitBill from './components/SplitBill';
 import Button from './components/Button';
-
-import './index.css';
 
 const data = [
 	{
@@ -27,12 +28,23 @@ const data = [
 ];
 
 export default function App() {
+	const [displayAddFriend, setDisplayAddFriend] = useState(false);
+
+	function handleDisplayAddFriend() {
+		setDisplayAddFriend(display => !display);
+	}
+
 	return (
 		<div className="app">
 			<div className="sidebar">
 				<FriendsList friends={data} />
-				<AddFriend />
-				<Button>Add friend</Button>
+				{displayAddFriend && <AddFriend />}
+
+				{/* our custom Button component does not have inbuilt onClick event listener */}
+				{/* so we instead pass the event listener fn to the <button> elem inside Button */}
+				<Button onClick={handleDisplayAddFriend}>
+					{displayAddFriend ? 'Close' : 'Add friend'}
+				</Button>
 			</div>
 			<SplitBill />
 		</div>

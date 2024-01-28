@@ -43,6 +43,8 @@ export default function App() {
 
 	function handleSelectedFriend(friend) {
 		setSelectedFriend(currFriend => (friend.id === currFriend?.id ? null : friend));
+		// to automatically close the AddFriend component when you select a friend and open SplitBill
+		setDisplayAddFriend(false);
 	}
 
 	return (

@@ -1,4 +1,8 @@
 import FriendsList from './components/FriendsList';
+import AddFriend from './components/AddFriend';
+import SplitBill from './components/SplitBill';
+import Button from './components/Button';
+
 import './index.css';
 
 const data = [
@@ -27,7 +31,10 @@ export default function App() {
 		<div className="app">
 			<div className="sidebar">
 				<FriendsList friends={data} />
+				<AddFriend />
+				<Button>Add friend</Button>
 			</div>
+			<SplitBill />
 		</div>
 	);
 }
